@@ -1,0 +1,41 @@
+Step 1:
+database/factories/CategoryFactory.php
+<?php
+
+use Faker\Generator as Faker;
+
+$factory->define(App\Category::class, function (Faker $faker) {
+    return [
+        'category_name' => $faker->word,
+        'category_description' => $faker->text($maxNbChars = 200),
+        'publication_status' => $faker->boolean()
+    ];
+});
+
+database/factories/UserFactory.php
+
+$factory->define(App\User::class, function (Faker $faker) {
+    static $password; // here static means 'password same in all column in Database'
+
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('123456'), // or  bcrypt('secret'),
+        'remember_token' => str_random(10),
+    ];
+});
+
+
+Step 2:
+database/seeds/DatabaseSeeder.php
+
+ public function run()
+    {
+        // $this->call(UsersTableSeeder::class);
+//        factory(App\User::class, 10)->create(); // Check this in laravel.com "seeder"
+        factory(App\Category::class, 50)->create(); // Check this in laravel.com "seeder"
+    }
+}
+
+Step 3:
+command: php artisan db:seed

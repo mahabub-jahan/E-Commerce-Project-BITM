@@ -1,6 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
+use Faker\Generator as Faker; // Press Cltr+Right Button and Check this Generator class how can we insert
+//data in various way
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,12 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    static $password;
+    static $password; // here static means 'password same in all column in Database'
 
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = bcrypt('123456'), // or  bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });

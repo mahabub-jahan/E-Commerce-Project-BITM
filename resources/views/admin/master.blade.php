@@ -13,12 +13,19 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/Ionicons/css/ionicons.min.css">
     <!-- jvectormap -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/admin') }}/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('/admin') }}/dist/css/skins/_all-skins.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+      folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('/admin') }}/dist/css/skins/_all-skins.min.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{{ asset('/admin') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,5 +90,8 @@
 <script src="{{ asset('/admin') }}/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/admin') }}/dist/js/demo.js"></script>
+
+@yield('script')
+
 </body>
 </html>
