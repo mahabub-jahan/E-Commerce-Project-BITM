@@ -13,9 +13,6 @@
         </div>
     </div>
 
-
-
-
     <div class="content_top">
         <div class="container">
             <div class="grid_1">
@@ -69,13 +66,14 @@
                 </ul>
             </div>
             <div class="grid_2">
+                @foreach($products as $product)
                 <div class="col-md-3 span_6">
                     <div class="box_inner">
-                        <img src="{{asset('/front')}}/images/p1.jpg" class="img-responsive" alt=""/>
+                        <img src="{{ asset($product->product_image) }}" class="img-responsive" alt=""/>
                         <div class="sale-box"> </div>
                         <div class="desc">
-                            <h3>Ullamcorper suscipit</h3>
-                            <h4>178,90 $</h4>
+                            <h3>{{ $product->product_name }}</h3>
+                            <h4>TK. {{ $product->product_price }}</h4>
                             <ul class="list2">
                                 <li class="list2_left"><span class="m_1"><a href="#" class="link">Add to Cart</a></span></li>
                                 <li class="list2_right"><span class="m_2"><a href="#" class="link1">See More</a></span></li>
@@ -85,54 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 span_6">
-                    <div class="box_inner">
-                        <img src="{{asset('/front')}}/images/p2.jpg" class="img-responsive" alt=""/>
-                        <div class="sale-box"> </div>
-                        <div class="desc">
-                            <h3>Ullamcorper suscipit</h3>
-                            <h4>178,90 $</h4>
-                            <ul class="list2">
-                                <li class="list2_left"><span class="m_1"><a href="#" class="link">Add to Cart</a></span></li>
-                                <li class="list2_right"><span class="m_2"><a href="#" class="link1">See More</a></span></li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                            <div class="heart"> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 span_6">
-                    <div class="box_inner">
-                        <img src="{{asset('/front')}}/images/p3.jpg" class="img-responsive" alt=""/>
-                        <div class="sale-box"> </div>
-                        <div class="desc">
-                            <h3>Ullamcorper suscipit</h3>
-                            <h4>178,90 $</h4>
-                            <ul class="list2">
-                                <li class="list2_left"><span class="m_1"><a href="#" class="link">Add to Cart</a></span></li>
-                                <li class="list2_right"><span class="m_2"><a href="#" class="link1">See More</a></span></li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                            <div class="heart"> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 span_6">
-                    <div class="box_inner">
-                        <img src="{{asset('/front')}}/images/p4.jpg" class="img-responsive" alt=""/>
-                        <div class="sale-box"> </div>
-                        <div class="desc">
-                            <h3>Ullamcorper suscipit</h3>
-                            <h4>178,90 $</h4>
-                            <ul class="list2">
-                                <li class="list2_left"><span class="m_1"><a href="#" class="link">Add to Cart</a></span></li>
-                                <li class="list2_right"><span class="m_2"><a href="#" class="link1">See More</a></span></li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                            <div class="heart"> </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class="clearfix"> </div>
             </div>
         </div>

@@ -43,7 +43,7 @@ Route::get('/brand/delete-brand/{id}', 'BrandController@deleteBrandInfo');
 // For Product
 Route::get('/product/add-product', 'ProductController@showProductForm');
 Route::post('/product/new-product', 'ProductController@saveProductInfo');
-//Route::get('/product/manage-product', 'ProductController@showProductForm');
+Route::get('/product/manage-product', 'ProductController@manageProductInfo');
 //Route::get('/product/add-product', 'ProductController@showProductForm');
 //Route::get('/product/add-product', 'ProductController@showProductForm');
 //Route::get('/product/add-product', 'ProductController@showProductForm');

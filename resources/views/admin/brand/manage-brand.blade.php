@@ -5,7 +5,7 @@
     <section class="content-header">
         <h1>
             Brand
-            <small>Brand Info</small>
+            <small>Manage Brand</small>
         </h1>
 
     </section>
@@ -16,16 +16,31 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Brand Information Data Table</h3>
+
+                    @if($message = Session::get('message'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{ $message }}
+                        </div>
+                    @endif
+
+                    @if($message = Session::get('destroy'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{ $message }}
+                        </div>
+                    @endif
+
                 </div>
                 <!-- /.box-header -->
-                @if($message = Session::get('message'))
-                <h3 class="text-center text-success">{{ $message }}</h3>
-                @endif
+
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Brand Id</th>
+                                <th>SL. Id</th>
                                 <th>Brand Name</th>
                                 <th>Brand Description</th>
                                 <th>Publication Status</th>
@@ -65,15 +80,7 @@
                             </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
                 <!-- /.box-body -->

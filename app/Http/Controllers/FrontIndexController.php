@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class FrontIndexController extends Controller
 {
 
     public function homeIndex(){
-        return view('front.home.home-content');
+        $products = Product::where('publication_status', 1)->orderBy('id', 'desc')->take(8)->get();
+
+        return view('front.home.home-content',compact('products'));
     }
 
     public function productCategory(){

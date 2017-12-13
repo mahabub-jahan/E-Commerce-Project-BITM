@@ -8,6 +8,7 @@
             <small>Add Product</small>
         </h1>
 
+
     </section>
 
     <section class="content">
@@ -18,24 +19,40 @@
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add New Product</h3>
+                        @if($message = Session::get('message'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{ $message }}
+                        </div>
+                        @endif
+
+                        @if($message = Session::get('destroy'))
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                {{ $message }}
+                            </div>
+                        @endif
+
                     </div>
-                    @if($message = Session::get('message'))
-                        <h3 class="alert alert-success">{{ $message }}</h3>
-                    @endif
-                    @if($message = Session::get('destroy'))
-                        <h3 class="alert alert-success">{{ $message }}</h3>
-                    @endif
+
+
                 <!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" method="POST" action="{{ url('/product/new-product') }}">
+                    <form class="form-horizontal" method="POST" action="{{ url('/product/new-product') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="box-body">
 
-                            <div class="form-group">
-                                <label for="inputName3" class="col-sm-2 control-label">Product Name</label>
+                            <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}" >
+                                <label for="inputName3" class="col-sm-2 control-label ">Product Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="product_name" class="form-control" id="inputName3"
-                                           placeholder="Add a Name">
+                                    <input type="text" name="product_name" class="form-control" id="inputName3" placeholder="Add a Name">
+                                    @if ($errors->has('product_name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('product_name') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
 

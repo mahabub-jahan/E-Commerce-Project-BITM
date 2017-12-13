@@ -1,0 +1,53 @@
+Step 1:
+- Go to app/Providers/AppServiceProvider.php
+- When a laravel project run in a server
+    public function boot()
+    {
+        //
+    }
+    this function run also in all view
+- For this boot function we can share data in any view or specific view
+    public function boot()
+    {
+        View::share('name', 'Shuvo');
+    }
+    Note: this name variable we can use all views in our laravel projects admin panel or front
+
+- For Specific view we can use composer
+    public function boot()
+    {
+        // View::share('name', 'Shuvo');
+        View::composer('front.home.home-content', function($view) {
+        $view->with('name', 'Shuvo');
+        });
+    }
+    Note:
+        - 'front.home.home-content' this a name of a blade file which mesure from views in resources/views
+        - here function($view) is a anenimus function and $view is a object for View library
+        - 'name' is variable name
+
+- For multiple view we can use
+    public function boot()
+    {
+        View::composer(['front.home.home-content', '', '', ''], function($view) {
+        $view->with('name', 'Shuvo');
+        });
+    }
+- If we want to use it all view we can use
+
+    public function boot()
+    {
+        View::composer('*', function($view) {
+        $view->with('name', 'Shuvo');
+        });
+    }
+
+
+Step 2:
+- In this project
+public function boot()
+{
+    View::composer('*', function($view) {
+    $view->with('categories',  Category::where('publication_status', 1)->get());
+    });
+}

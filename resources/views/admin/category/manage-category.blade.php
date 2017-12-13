@@ -5,7 +5,7 @@
     <section class="content-header">
         <h1>
             Category
-            <small>Category Info</small>
+            <small>Manage Category</small>
         </h1>
 
     </section>
@@ -17,20 +17,30 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Category Information Data Table</h3>
+
+                        @if($message = Session::get('message'))
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                {{ $message }}
+                            </div>
+                        @endif
+
+                        @if($message = Session::get('destroy'))
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                {{ $message }}
+                            </div>
+                        @endif
                     </div>
                     <!-- /.box-header -->
-                    @if($message = Session::get('message'))
-                        <h3 class="alert alert-success">{{ $message }}</h3>
-                    @endif
 
-                    @if($message = Session::get('destroy'))
-                        <h3 class="alert alert-danger">{{ $message }}</h3>
-                    @endif
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Category Id</th>
+                                <th>SL. Id</th>
                                 <th>Category Name</th>
                                 <th>Category Description</th>
                                 <th>Publication Status</th>

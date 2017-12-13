@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Category;
+use View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function($view) {
+            $view->with('categories',  Category::where('publication_status', 1)->get());
+        });
     }
 
     /**
