@@ -147,86 +147,19 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="span_2">
+                    @foreach($products as $product)
                     <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="{{url('/product-details')}}">
-                            <img src="{{asset('/front/')}}/images/pic2.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
+                        <a href="{{url('/product-details/'.$product->id)}}">
+                            <img src="{{asset( $product->product_image)}}" class="img-responsive" alt=""/>
+                            <h3>{{ $product->product_name }}</h3>
                             <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
+                            <h4>TK. {{ $product->product_price }}</h4>
                         </a>
                     </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic1.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic3.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
+                    @endforeach
                     <div class="clearfix"></div>
                 </div>
-                <div class="span_2">
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic4.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic5.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic6.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="span_3">
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic7.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic8.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="col_1_of_single1 span_1_of_single1">
-                        <a href="single.html">
-                            <img src="{{asset('/front/')}}/images/pic9.jpg" class="img-responsive" alt=""/>
-                            <h3>parum clari</h3>
-                            <p>Duis autem vel eum iriure</p>
-                            <h4>Rs.399</h4>
-                        </a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+
             </div>
         </div>
     </div>

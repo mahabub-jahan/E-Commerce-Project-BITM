@@ -1,20 +1,19 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 // Front Start
 Route::get('/','FrontIndexController@homeIndex');
-Route::get('/product-category','FrontIndexController@productCategory');
-Route::get('/product-details','FrontIndexController@productDetails');
+Route::get('/product-category/{id}','FrontIndexController@productCategory');
+Route::get('/product-details/{id}','FrontIndexController@productDetails');
 // Front End
+
+//Cart Start
+Route::post('/add-to-cart','CartController@addToCart');
+Route::get('/show-cart','CartController@showCart');
+Route::post('/update-cart-product','CartController@updateCart');
+Route::get('/delete-cart-product/{id}','CartController@deleteCart');
+// Cart End
+
 // Admin Start
 Auth::routes();
 
