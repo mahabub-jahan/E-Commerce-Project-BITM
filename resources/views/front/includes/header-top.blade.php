@@ -23,8 +23,13 @@
                 <ul>
                     <li class="active"><a href="login.html">Account</a></li>
                     <li><a href="wishlist.html">Wishlist</a></li>
-                    <li><a href="login.html">Log In</a></li>
+
+                    @if(Session::get('customerId'))
+                    <li><a href="{{url('/customer-logout')}}">Logout</a></li>
+                    @else
+                    <li><a href="register.html">Log In</a></li>
                     <li><a href="register.html">Sign Up</a></li>
+                     @endif
                 </ul>
             </div>
             <div class="clearfix"></div>

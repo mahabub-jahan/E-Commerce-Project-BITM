@@ -14,6 +14,15 @@ Route::post('/update-cart-product','CartController@updateCart');
 Route::get('/delete-cart-product/{id}','CartController@deleteCart');
 // Cart End
 
+// User Sign In, Login
+Route::get('/checkout','CheckoutController@index');
+Route::post('/new-customer','CheckoutController@saveCustomerInfo');
+Route::get('/shipping-info', 'CheckoutController@showShippingInfo');
+Route::get('/customer-logout', 'CheckoutController@customerLogout');
+Route::post('/customer-login', 'CheckoutController@customerLoginCheck');
+Route::post('/new-shipping', 'CheckoutController@saveShippingInfo');
+Route::get('/payment-info', 'CheckoutController@showPaymentForm');
+
 // Admin Start
 Auth::routes();
 
@@ -32,7 +41,7 @@ Route::get('/category/delete-category/{id}', 'CategoryController@deleteCategoryI
 //For Brand
 Route::get('/brand/add-brand', 'BrandController@showBrandForm');
 Route::post('/brand/new-brand', 'BrandController@saveBrandInfo');
-Route::get('/brand/manage-brand', 'BrandController@manageBrandInfo');
+Route::get('/brand/manage-brand', 'BrandController@manageBrandInfo')->middleware('AuthenticateMiddleware');
 Route::get('/brand/unpublished-brand/{id}', 'BrandController@unpublishedBrandInfo');
 Route::get('/brand/published-brand/{id}', 'BrandController@publishedBrandInfo');
 Route::get('/brand/edit-brand/{id}', 'BrandController@editBrandInfo');

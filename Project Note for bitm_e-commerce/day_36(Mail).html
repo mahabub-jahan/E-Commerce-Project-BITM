@@ -1,0 +1,64 @@
+Step 1:
+- Mail Library
+	- Mailable 
+	- Mail = Easy
+	- MarkdownEmail = More powerfull
+
+
+Step 2: 
+- Now we use mail
+- config/mail.php 
+	- We can see the configration of mail
+
+Step 3:
+- CheckoutController.php
+	public function saveCustomerInfo(Request $request) {
+
+        $this->validate($request, [
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            //'email' => 'required|email|unique:customers,email',
+            'password' => 'required',
+            'phone_number' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            'address' => 'required',
+        ]);
+
+        $customer = new Customer();
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->password = bcrypt($request->password);
+        $customer->phone_number = $request->phone_number;
+        $customer->address = $request->address;
+        $customer->save();
+
+        Session::put('customerId', $customer->id);
+        Session::put('customerName', $customer->first_name.' '.$customer->last_name);
+
+        $data = $customer->toArray();
+        /* convert $customer object to array
+           to access this array data we have to write
+            $data['first_name']
+        */
+
+
+        Mail::send('front.mail.congratulation-mail', $data, function ($message) use ($data) {
+            $message->to($data['email']);// In this position we can't use object. We must use array to pass data
+            $message->subject('Congratulation Mail');
+        });
+        /*
+         * 'front.mail.congratulation-mail' = this is a blade file where we write our mail
+         * $data = this $data contain all data like first_name, last_name, email etc.
+         * */
+
+        return redirect('/shipping-info');
+    }
+
+Step 4:
+- .env
+	MAIL_DRIVER=smtp
+	MAIL_HOST=smtp.gmail.com
+	MAIL_PORT=587
+	MAIL_USERNAME=xxx.25@gmail.com
+	MAIL_PASSWORD=password
+	MAIL_ENCRYPTION=tls

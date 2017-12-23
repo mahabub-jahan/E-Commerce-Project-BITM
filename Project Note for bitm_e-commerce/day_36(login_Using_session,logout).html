@@ -1,0 +1,76 @@
+Step 1:
+- CheckoutController.php
+public function saveCustomerInfo(Request $request) {
+
+        $this->validate($request, [
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            //'email' => 'required|email|unique:customers,email',
+            'password' => 'required',
+            'phone_number' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            'address' => 'required',
+        ]);
+
+        $customer = new Customer();
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->password = bcrypt($request->password);
+        $customer->phone_number = $request->phone_number;
+        $customer->address = $request->address;
+        $customer->save();
+
+        Session::put('customerId', $customer->id); // Store data in session
+        Session::put('customerName', $customer->first_name.' '.$customer->last_name);
+
+    
+        return redirect('/shipping-info');
+    }
+
+    public function customerLogout(){
+        Session::forget('customerId'); // Delete Session
+        Session::forget('customerName');
+        return redirect('/');
+    }
+
+
+
+    public function showShippingInfo() {
+        return view('front.checkout.shipping-info');
+    }
+
+
+
+Step 3:
+- front/includes/header-top.blade.php
+<div class="cssmenu">
+    <ul>
+        <li class="active"><a href="login.html">Account</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+
+        @if(Session::get('customerId'))
+        <li><a href="{{url('/customer-logout')}}">Logout</a></li>
+        @else
+        <li><a href="register.html">Log In</a></li>
+        <li><a href="register.html">Sign Up</a></li>
+         @endif
+    </ul>
+</div>
+
+Step 4:
+
+
+Step 4:
+- Add tk in card in header
+-show-cart.blade.php
+	{{ Session::put('grandTotal', $grandTotal) }}
+
+
+Step 5:
+- Add tk in card in header
+- front/includes/header-bottom.blade.php
+<ul class="bag">
+    <a href="{{ url('/show-cart') }}"><i class="bag_left"> </i></a>
+    <a href="#"><li class="bag_right"><p>TK. {{ Session::get('grandTotal') }}</p> </li></a>
+    <div class="clearfix"> </div>
+</ul>

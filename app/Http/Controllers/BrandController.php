@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+
     public function showBrandForm(){
         return view('admin.brand.add-brand');
     }
@@ -23,7 +24,7 @@ class BrandController extends Controller
 
     public function manageBrandInfo(){
         //$brands = brand::all();
-        $brands = Brand::orderBy('id', 'desc')->get();
+        return $brands = Brand::orderBy('id', 'desc')->get();
         return view('admin.brand.manage-brand', ['brands' => $brands]);
     }
 

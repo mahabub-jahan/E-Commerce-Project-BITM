@@ -68,6 +68,24 @@
                         <tr>
                             <th>Grand Total</th>
                             <td>TK. {{ $grandTotal = ($sum - $discount + $tax) }}</td>
+                            {{ Session::put('grandTotal', $grandTotal) }}
+                        </tr>
+                    </table>
+
+
+
+                    <table class="table table-borderd">
+                        <tr>
+                            <td>
+                                <a href="{{ url('/') }}" class="btn btn-primary">Continue Shopping</a>
+                            </td>
+                            <td>
+                                @if(Session::get('customerId'))
+                                <a href="{{ url('/shipping-info') }}" class="btn btn-primary">Checkout</a>
+                                @else
+                                <a href="{{ url('/checkout') }}" class="btn btn-primary">Checkout</a>
+                                @endif
+                            </td>
                         </tr>
                     </table>
 
