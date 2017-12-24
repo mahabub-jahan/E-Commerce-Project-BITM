@@ -29,7 +29,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             {{--Dashbord--}}
-            <li class="active treeview menu-open">
+            <li class="active">
                 <a href="{{ url('/home') }}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
@@ -81,6 +81,16 @@
                     <li><a href="{{ url('/product/add-product') }}"><i class="fa fa-circle-o"></i> Add product</a></li>
                     <li><a href="{{ url('/product/manage-product') }}"><i class="fa fa-circle-o"></i> Manage product</a></li>
                 </ul>
+            </li>
+
+
+
+            <li>
+                <a href=" {{ url('/manage-order') }}">
+                    <i class="fa fa-files-o"></i>
+                    <span>Order</span>
+                </a>
+
             </li>
 
 

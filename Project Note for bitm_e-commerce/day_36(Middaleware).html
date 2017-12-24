@@ -1,0 +1,53 @@
+#Step of middleware
+	- Create middleware
+	- Register middleware
+	- Use middleware
+Step 1:
+- Crate a middlewate:
+	php artisan make:middleware AuthenticateMiddleware
+
+Step 2:
+- app/Http/Middleware/AuthenticateMiddleware
+	public function handle($request, Closure $next) // $request get the URL and 'Closure 	$next' use the request using return
+    {
+        return $next($request);
+    }
+
+ Step 3:
+ - Register the middleware
+ 	- Goto app/Http/Kernel.php
+
+ 		protected $routeMiddleware = [
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'AuthenticateMiddleware' => \App\Http\Middleware\AuthenticateMiddleware::class,// Register the middlewate
+    ];
+
+
+######################
+-Now we can use it customly
+-delete construct in  BrandController.pphp
+
+Step 4:
+-Use Middlewate. we can use it multiply way. For example
+- Goto web.php
+	Route::get('/brand/manage-brand', 'BrandController@manageBrandInfo')->middleware('AuthenticateMiddleware');
+
+Step 5:
+- app/Http/Middleware/AuthenticateMiddleware
+public function handle($request, Closure $next) // $request get the URL and 'Closure $next' use the request using return
+    {
+        if (Auth::check()) {
+            return $next($request);
+        } else {
+          return redirect('/login');  
+        }
+       
+    }
+
+or we can handel customer also
+

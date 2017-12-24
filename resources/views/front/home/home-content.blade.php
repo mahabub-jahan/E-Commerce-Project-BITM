@@ -1,6 +1,6 @@
 @extends('front.master')
-
 @section('body')
+    <h1>{{ Session::get('message') }}</h1>
     <div class="index_slider">
         <div class="container">
             <div class="callbacks_container">

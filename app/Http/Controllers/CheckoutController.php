@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Order;
+use App\OrderDetail;
+use App\Payment;
 use App\Shipping;
 use Illuminate\Http\Request;
 use Session;
@@ -103,6 +106,40 @@ class CheckoutController extends Controller
 
     public function showPaymentForm() {
         return view('front.checkout.payment-form');
+    }
+
+    public function saveOrderInfo(Request $request) {
+        $paymentType = $request->payment_type;
+        if ($paymentType == 'Cash On Delivery') {
+            $order = new Order();
+            $order->customer_id = Session::get('customerId');
+            $order->shipping_id = Session::get('shippingId');
+            $order->order_total = Session::get('grandTotal');
+            $order->save();
+
+            $payment = new Payment();
+            $payment->order_id = $order->id;
+            $payment->payment_type = $paymentType;
+            $payment->save();
+
+            $cartProducts = Cart::content();
+            foreach ($cartProducts as $cartProduct) {
+                $orderDetail = new OrderDetail();
+                $orderDetail->order_id = $order->id;
+                $orderDetail->product_id = $cartProduct->id;
+                $orderDetail->product_name = $cartProduct->name;
+                $orderDetail->product_price = $cartProduct->price;
+                $orderDetail->product_quantity = $cartProduct->qty;
+                $orderDetail->save();
+
+            }
+
+            Cart::destroy();
+
+            return redirect('/')->with('message', 'Thanks for your valuable order. We will contact with you soon');
+
+
+        }
     }
 }
 

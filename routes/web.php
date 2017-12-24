@@ -22,6 +22,7 @@ Route::get('/customer-logout', 'CheckoutController@customerLogout');
 Route::post('/customer-login', 'CheckoutController@customerLoginCheck');
 Route::post('/new-shipping', 'CheckoutController@saveShippingInfo');
 Route::get('/payment-info', 'CheckoutController@showPaymentForm');
+Route::post('/new-order', 'CheckoutController@saveOrderInfo');
 
 // Admin Start
 Auth::routes();
@@ -56,6 +57,17 @@ Route::get('/product/manage-product', 'ProductController@manageProductInfo');
 //Route::get('/product/add-product', 'ProductController@showProductForm');
 //Route::get('/product/add-product', 'ProductController@showProductForm');
 //
+
+// For order
+Route::get('/manage-order', 'OrderController@manageOrderInfo');
+Route::get('/order/view-order-details/{id}', 'OrderController@viewOrderDetail');
+Route::get('/order/view-order-invoice/{id}', 'OrderController@viewOrderInvoice');
+Route::get('/order/edit-order/{id}', 'OrderController@editOrderInfo');
+Route::get('/update-order', 'OrderController@updateOrderInfo');
+
+Route::get('/pdf', 'OrderController@myPdf'); //use dompdf
+
+
 
 
 
